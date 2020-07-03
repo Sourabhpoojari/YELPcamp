@@ -29,7 +29,7 @@ app.use(methodOverride('_method'));
 
 // Passport Configuration
 app.use(require('express-session')({
-    secret:'I love appi',
+    secret:"Damn it's nothing",
     resave : false,
     saveUninitialized: false
 }));
