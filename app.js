@@ -7,7 +7,8 @@ const express   =     require('express'),
     mongoose    =   require('mongoose');
     mongoose.set('useUnifiedTopology',true);
     mongoose.set('useNewUrlParser',true);
-    mongoose.connect('mongodb://localhost/yelp_camp');
+const url = process.env.MONGODB_URI|| 'mongodb://localhost/yelp_camp';
+    mongoose.connect(url);
 
 // Routes
 const campgroundRoutes = require('./routes/campgrounds'),
