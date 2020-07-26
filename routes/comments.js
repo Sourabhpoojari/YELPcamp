@@ -28,6 +28,7 @@ router.post('/campgrounds/:id/comments',middleware.isLoggedIn,(req,res)=>{
     // lookup campground by id
     Campground.findById(req.params.id,(err,campground)=>{
         if (err) {
+            req.flash('error',"Something went wrong!");
             console.log(err);
             res.redirect('/camgrounds');
         } else {
@@ -42,6 +43,7 @@ router.post('/campgrounds/:id/comments',middleware.isLoggedIn,(req,res)=>{
                     comment.save();
                     campground.comments.push(comment);
                     campground.save();
+                    req.flash('success',"Added Comment!!");
                     res.redirect('/campgrounds/'+campground._id);
                 }
             });
@@ -65,6 +67,7 @@ router.put('/campgrounds/:id/comments/:comment_id',middleware.checkCommentsAuth,
         if (err) {
             res.redirect('back');
         } else {
+            req.flash('success',"Comment Edited!!");
             res.redirect('/campgrounds/'+req.params.id);
         }
     });
@@ -74,8 +77,10 @@ router.put('/campgrounds/:id/comments/:comment_id',middleware.checkCommentsAuth,
 router.delete('/campgrounds/:id/comments/:comment_id',middleware.checkCommentsAuth,(req,res)=>{
     Comment.findByIdAndDelete(req.params.comment_id,(err)=>{
         if (err) {
+            req.flash('error',"Something went wrong");
             res.redirect('back');
         } else {
+            req.flash('success',"Deleted Comment!!");
             res.redirect('/campgrounds/'+req.params.id);
         }
     });

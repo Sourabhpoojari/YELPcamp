@@ -4,6 +4,7 @@ const express   =     require('express'),
     passport    =   require('passport'),
     localStrategy=  require('passport-local'),
     methodOverride = require('method-override'),
+    flash = require('connect-flash'),
     mongoose    =   require('mongoose');
     mongoose.set('useUnifiedTopology',true);
     mongoose.set('useNewUrlParser',true);
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.set('view engine','ejs');
 app.use(express.static(__dirname+'/public'));
 app.use(methodOverride('_method'));
+app.use(flash());
 
 // Passport Configuration
 app.use(require('express-session')({
@@ -41,6 +43,8 @@ passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 app.use((req,res,next)=>{
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
 
