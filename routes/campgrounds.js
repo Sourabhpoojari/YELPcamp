@@ -22,15 +22,17 @@ router.get('/campgrounds',(req,res)=>{
 
 
 router.post('/campgrounds',middleware.isLoggedIn,(req,res)=>{
-    var name =req.body.name;
-    var image =req.body.image;
-    var desc = req.body.description;
+    let name =req.body.name,
+     image =req.body.image,
+     price = req.body.price,
+     desc = req.body.description;
     const author = {
         id: req.user._id,
         username : req.user.username
     }
     const newCampground = {
         name : name,
+        price : price,
         image : image,
         description : desc,
         author : author
