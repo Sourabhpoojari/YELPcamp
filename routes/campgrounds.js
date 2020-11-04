@@ -7,19 +7,12 @@ router.get('/campgrounds',(req,res)=>{
     // Get all campgorunds from DB
     Campground.find({},(err,allcampgrounds)=>{
         if (err) {
-            console.log(err);
-            
+            console.log(err);            
         } else {
             res.render('campgrounds/index', {campgrounds : allcampgrounds});
         }
-    });
-
-    
+    });   
 });
-
-
-
-
 
 router.post('/campgrounds',middleware.isLoggedIn,(req,res)=>{
     let name =req.body.name,
@@ -29,7 +22,7 @@ router.post('/campgrounds',middleware.isLoggedIn,(req,res)=>{
     const author = {
         id: req.user._id,
         username : req.user.username
-    }
+     }
     const newCampground = {
         name : name,
         price : price,
