@@ -9,7 +9,7 @@ const express   =     require('express'),
     mongoose.set('useUnifiedTopology',true);
     mongoose.set('useNewUrlParser',true);
     const MONGODB_URI = 'mongodb+srv://sourabh:2vXbAU8g4LMBZjU6@yelpcamp.ty6va.mongodb.net/<dbname>?retryWrites=true&w=majority';
-const url = MONGODB_URI ||process.env.MONGODB_URI|| 'mongodb://localhost/yelp_camp';
+const url = MONGODB_URI ||process.env.MONGODB_URI;
     mongoose.connect(url);
 
 // Routes

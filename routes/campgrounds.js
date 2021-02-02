@@ -53,7 +53,7 @@ router.get('/campgrounds/:id',(req,res)=>{
         if (err) {
             console.log(err);      
         } else {
-            // console.log(foundCampground);
+            console.log(foundCampground);
             
             // render the show template with that campground
             res.render('campgrounds/show',{campground : foundCampground });
